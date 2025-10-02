@@ -1,9 +1,9 @@
 import express from "express";
 import dotenv from "dotenv";
-// import cors from "cors";
+import cors from "cors";
 import connectDB from "./utils/db.js";
 
-// import userRoutes from "./routes/userRoutes.js";
+import userRoutes from "./routes/userRoute.js";
 import webhookRoutes from "./routes/webhookRoutes.js";
 
 dotenv.config();
@@ -20,11 +20,11 @@ app.use(
   })
 );
 
-// app.use(cors({ origin: "http://localhost:5173", credentials: true }));
+app.use(cors({ origin: "http://localhost:5173", credentials: true }));
 
 // Routes
 app.get("/", (req, res) => res.send("server is running ✅"));
-// app.use("/api/users", userRoutes);
+app.use("/api/users", userRoutes);
 app.use("/webhook", webhookRoutes);
 
 // Start server
